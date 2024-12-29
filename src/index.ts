@@ -2,6 +2,7 @@ import express from 'express';
 import 'dotenv/config';
 
 import routes from './routes';
+import errorHandler from './middlewares/errorHandler';
 import { isDevelopment, logger } from './utils';
 import { server } from './__tests__/mocks/node';
 
@@ -10,6 +11,7 @@ const port = process.env.API_PORT;
 
 app.use(express.json());
 app.use(routes);
+app.use(errorHandler);
 
 if (isDevelopment) server.listen();
 
